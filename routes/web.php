@@ -11,10 +11,10 @@ use App\Http\Controllers\Frontend;
 use App\Http\Controllers\Admin;
 
 
-Route::namespace('Frontend')->prefix('frontend')->group(function(){
-    Route::get('/frontend',[Frontend\HomeController::class,'index']);
-    Route::get('/aboutFrontend',[Frontend\aboutFrontendController::class,'about']);
-});
+// Route::namespace('Frontend')->prefix('frontend')->group(function(){
+//     Route::get('/frontend',[Frontend\HomeController::class,'index']);
+//     Route::get('/aboutFrontend',[Frontend\aboutFrontendController::class,'about']);
+// });
 
 // Route::namespace('Admin')->prefix('admin')->group(function(){
 //     Route::get('/Dashboardadmin',[Admin\DashboardController::class,'index']);
@@ -22,11 +22,11 @@ Route::namespace('Frontend')->prefix('frontend')->group(function(){
 // });
 
 
-Route::namespace('Admin')->prefix('admin')->group(function(){
-    Route::get('/DashboardController',[Admin\DashboardController::class,'index']);
-    Route::get('/adminUsers',[Admin\AdminHomeController::class,'index']);
-    Route::get('/settings',[Admin\SettingsController::class,'index']);
-});
+// Route::namespace('Admin')->prefix('admin')->group(function(){
+//     Route::get('/DashboardController',[Admin\DashboardController::class,'index']);
+//     Route::get('/adminUsers',[Admin\AdminHomeController::class,'index']);
+//     Route::get('/settings',[Admin\SettingsController::class,'index']);
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +40,35 @@ Route::namespace('Admin')->prefix('admin')->group(function(){
 */
 
 Route::get('/', function () {
-    return view('cate');
+    return view('welcome');// return a view
 });
 Route::get('/test' , function () {  
     return view('test');
 });
+
+Route::get('/users',function(){
+    return "This is the users page"; // return a string
+});
+
+Route::get('/foods',function(){
+    return [
+        'Nam','Duc','Thuong' //return a array
+    ];
+});
+// return  object (response an object)
+Route::get('/aboutMe',function(){
+    return response()->json([
+        'name'=>'Tong Duc Nam',
+        'Email'=>'nam@gmail.com',
+        'age'=>24
+    ]);
+});
+// response another request = redirect
+Route::get('/something', function(){
+    redirect('/');
+});
+
+
 // Route::get('/news',function(){
 //     return 'news screen';
 // });
@@ -52,12 +76,12 @@ Route::get('/test' , function () {
 //     return 'product screen';
 // });
 
-Route::prefix('backend')->group(function(){
-    Route::get('/user','Backend\User2Controller@index')->name('backend.user');
-    Route::get('/product',[Backend\ProductController::class,'index'])->name('backend.product');
-    Route::get('/category',[Backend\CategoryController::class,'index'])->name('backend.category');
-    Route::get('/news',[Backend\NewsController::class,'index'])->name('backend.news');
-});
+// Route::prefix('backend')->group(function(){
+//     Route::get('/user','Backend\User2Controller@index')->name('backend.user');
+//     Route::get('/product',[Backend\ProductController::class,'index'])->name('backend.product');
+//     Route::get('/category',[Backend\CategoryController::class,'index'])->name('backend.category');
+//     Route::get('/news',[Backend\NewsController::class,'index'])->name('backend.news');
+// });
 
 // Route::get('/',[User2Controller::class,'index']);
 
